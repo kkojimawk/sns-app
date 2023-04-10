@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const User = require("../models/User");
+import { Router } from "express";
+import User from "../models/User";
+
+const router = Router();
 
 //ユーザー登録
 router.post("/register", async (req, res) => {
@@ -32,4 +34,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

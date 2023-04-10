@@ -1,15 +1,19 @@
-const express = require("express");
-const app = express();
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
-const PORT = 3000;
-const mongoose = require("mongoose");
-require("dotenv").config();
+import express from "express";
+import { config as dotenvConfig } from "dotenv";
+import mongoose from "mongoose";
 
-//データベース接続
+import userRoute from "./routes/users";
+import authRoute from "./routes/auth";
+import postRoute from "./routes/posts";
+
+const app = express();
+const PORT = 3000;
+
+dotenvConfig();
+
+// データベース接続
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(process.env.MONGO_URL as string)
   .then(() => {
     console.log("DB connection successful");
   })
@@ -17,7 +21,7 @@ mongoose
     console.log(err);
   });
 
-//ミドルウェア
+// ミドルウェア
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);

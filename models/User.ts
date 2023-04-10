@@ -11,6 +11,7 @@ interface IUser extends Document {
   isAdmin: boolean;
   desc: string;
   city: string;
+  updatedAt: Date;
 }
 
 const UserSchema: Schema = new mongoose.Schema(
@@ -66,4 +67,5 @@ const UserSchema: Schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model<IUser>("User", UserSchema);
+const User = mongoose.model<IUser>("User", UserSchema);
+export default User;
